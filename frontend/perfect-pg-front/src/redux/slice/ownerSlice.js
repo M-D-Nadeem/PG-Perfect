@@ -30,6 +30,20 @@ export const createSubscription=createAsyncThunk("/payment/subscribe",async(data
   }
 })
 
+export const validateSubscription=createAsyncThunk("/payment/validate",async(data)=>{
+   try{
+      const response=axiosInstance.post("/owner/payment/validate",data)
+      toast.promise(response,{
+         loading: "Verifing subscription",
+         error: "Error in creating subscription"
+     })
+     return (await response).data
+   }
+   catch(err){
+      toast.error(err?.response?.data?.message)
+  }
+})
+
 export const getAllFeedback=createAsyncThunk("/getallfeedback",async(propertyId)=>{
      try{
       const response=axiosInstance.get(`/owner/getallfeedback/${propertyId}`)

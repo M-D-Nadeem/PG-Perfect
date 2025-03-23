@@ -52,7 +52,7 @@ export const logoutAccount=createAsyncThunk("/owner/logout",async ()=>{
     }
 })
 export const getOwnerDetails=createAsyncThunk("/getownerinfo",async()=>{
-    try{
+    try{ 
         const response=axiosInstance.get("/owner/getownerinfo")
         toast.promise(response,{  
             loading: "Fetching owner details",

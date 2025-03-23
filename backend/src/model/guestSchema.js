@@ -21,6 +21,7 @@ const guestSchema = new mongoose.Schema({
         status:{type:Boolean,default:false}
     },
     subscription:{
+        planId:{type:String},
         amount:{type:Number},
         paymentDate: { type: Date, default: Date.now },
         lastPaymentDate: { type: Date, default: null }

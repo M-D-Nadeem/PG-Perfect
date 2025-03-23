@@ -57,16 +57,18 @@ function TenantForm() {
           propertyId:cards._id
         })
         const response=await dispatch(addGuest(userData))
-        if(response?.payload?.sucess){
+                
+        if(response?.payload?.sucess){          
             const userId=response?.payload?.data?._id
-            // const sendData={userId:userId,amount:subscriptionData.amount}
-            // const responseSub=await dispatch(createSubscription(sendData))
-
-            // if(responseSub?.payload?.sucess){
+            // const sendData={userId:userId,amount:userData.amount}
+            // const responsePlan=await dispatch(addPlan(sendData))
+            // console.log(responsePlan);
+            
+            // if(responsePlan?.payload?.sucess){
                 console.log(userId);
-                const responseMessage=await dispatch(sendLoginIdToGuest(userId))
-                console.log(responseMessage?.payload);
-                if(responseMessage?.payload?.sucess){
+                // const responseMessage=await dispatch(sendLoginIdToGuest(userId))
+                // console.log(responseMessage?.payload);
+                // if(responseMessage?.payload?.sucess){
                 setUserData({
                     name:"",
                     phone:"",
@@ -77,8 +79,9 @@ function TenantForm() {
                 })
           
                 navigate(-1)
-            }
-            }
+            // }
+            // }
+          }
      
     }
 

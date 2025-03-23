@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
 import pay1 from "../pages/HomePage/images/pay1.png"
-import { buySubscription, getRazorpayId, varifySubscribtion } from "../redux/slice/paymentSlice"
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { addComplain } from "../redux/slice/userSlice"
-import axiosInstance from "../helper/axiosInstance"
-import { checkDepositStatus, checkPaymentStatus, createDeposit, createSubscription } from "../redux/slice/ownerSlice.js"
+import { checkDepositStatus, checkPaymentStatus, createDeposit, createSubscription, validateSubscription } from "../redux/slice/ownerSlice.js"
 
 const StudentDashboard=()=>{
     const userData=useSelector((store)=>store.user.data)
@@ -41,19 +39,32 @@ const StudentDashboard=()=>{
         }
         else{
           console.log(userData._id);
-          const sendData={userId:userData._id,amount:amount}
+          const sendData={userId:userData._id}
           const responseSub=await dispatch(createSubscription(sendData))
           console.log(responseSub);
           if(responseSub?.payload?.sucess){
           const options = {
-            key: 'rzp_test_uNroaW9UQ2EFbd',
+            key: 'rzp_test_GaN21rSsG7HU8N',
             amount: amount * 100,
             currency: 'INR',
             name: 'Payment System',
-            description: 'Test Transaction',
-            order_id: responseSub?.payload?.data,
+            description: 'Subscription for rent',
+            subscription_id:responseSub?.payload?.subId,
             handler: async (response) => {
-              alert('Payment successful');
+              console.log("vadidate:",response);
+              
+              // alert('Payment successful');
+              const razorpay_payment_id= response.razorpay_payment_id
+              const razorpay_subscription_id= response.razorpay_subscription_id
+              const razorpay_signature= response.razorpay_signature
+              const res=await dispatch(validateSubscription({razorpay_payment_id,razorpay_subscription_id,razorpay_signature}))
+              console.log(res);
+              
+              if (res.payload.success) {
+                alert('Subscription Payment Verified Successfully!');
+              } else {
+                alert('Payment verification failed.');
+              }
             },
             prefill: {
               name:userData.name,

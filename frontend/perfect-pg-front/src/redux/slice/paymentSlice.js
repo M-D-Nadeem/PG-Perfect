@@ -96,6 +96,23 @@ export const getAllSubscription=createAsyncThunk("/razorpay/getsubscription",asy
         toast.error(err?.response?.data?.message)
     }
 })
+    // export const addPlan=createAsyncThunk("/razorpay/plan",async (data)=>{
+    //     try{
+    //         const response=axiosInstance.post("/owner/payment/plan",data)
+    //         toast.promise(response, {
+    //             loading: "Creating the plan",
+    //             success: (data) => {
+    //                 return data?.data?.message
+    //             },
+    //             error: "Failed to get payment records"
+    //         })
+    //         return (await response).data
+    //     }
+    //     catch(err){
+    //         toast.error(err?.response?.data?.message)
+    //     }
+    // })
+
 
 
 

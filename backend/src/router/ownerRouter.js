@@ -1,9 +1,9 @@
 import express from "express"
-import { addGuest, createProperty, createSubscription, deleteProperty, getAllComplains, getAllProperty, getComplainById, getOwnerDetails, getPropertyById, logIn, logOut, resolveComplainByOwner, sendLoginIdToGuest, signUp, updateProperty, varifySubscribtion, getAllSubscription, getPaymentApiKey1, getAllFeedback } from "../controller/ownerController.js"
+import { addGuest, createProperty, deleteProperty, getAllComplains, getAllProperty, getComplainById, getOwnerDetails, getPropertyById, logIn, logOut, resolveComplainByOwner, sendLoginIdToGuest, signUp, updateProperty, varifySubscribtion, getAllSubscription, getPaymentApiKey1, getAllFeedback } from "../controller/ownerController.js"
 import jwtAuth from "../middleware/ownerMiddleware.js"
 import upload from "../middleware/multerMiddleware.js"
 import authorizedRoles from "../middleware/commonMiddleware.js"
-import  { cheakDepositStatus, checkPaymentStatus,createDeposit,createPayment, getRevenueData } from "../controller/testConroller.js"
+import  { cheakDepositStatus, checkPaymentStatus,createDeposit,createPayment, createPlan, getRevenueData,createSubscription, validateSubscription } from "../controller/testConroller.js"
 
 const ownerRouter=express.Router()
 ownerRouter.post("/signup",signUp)
@@ -27,7 +27,7 @@ ownerRouter.post("/sendlogin/:guestId",jwtAuth,sendLoginIdToGuest)
 
 ownerRouter.get("/allcomplains/:propertyId",getAllComplains)
 ownerRouter.get("/complain/:complainId",getComplainById)
-ownerRouter.post("/payment/subscribe",createPayment)
+// ownerRouter.post("/payment/subscribe",createPayment)
 ownerRouter.get("/checkpaymentstatus/:userId",checkPaymentStatus)
 ownerRouter.get("/revenuedata",jwtAuth,getRevenueData)
 
@@ -41,4 +41,8 @@ ownerRouter.get("/getallfeedback/:propertyId",jwtAuth,getAllFeedback)
 
 ownerRouter.post("/payment/deposit",createDeposit)
 ownerRouter.get("/payment/checkdeposit/:userId",cheakDepositStatus)
+
+ownerRouter.post("/payment/plan",createPlan)
+ownerRouter.post("/payment/subscribe",createSubscription)
+ownerRouter.post("/payment/validate",validateSubscription)
 export default ownerRouter

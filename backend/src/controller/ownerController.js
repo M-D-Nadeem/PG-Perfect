@@ -11,6 +11,7 @@ import complaint from "../model/complainSchema.js"
 
 import { instance } from "../../server.js"
 import feedback from "../model/feedbackSchema.js";
+import Razorpay from "razorpay"
 
 const signUp=async (req,res,next)=>{
     const {name,email,password,phone}=req.body
@@ -264,7 +265,10 @@ const getAllProperty=async (req,res,next)=>{
     }
     };
 
-
+    const razorpay = new Razorpay({
+        key_id: 'rzp_test_GaN21rSsG7HU8N',
+        key_secret: 'CgkQ4w1ubuXLEDk7qtV5dWiT',
+    });
       const addGuest=async (req,res,next)=>{
         const {name,phone,email,roomType,roomNo,amount,propertyId,deposit}=req.body
         console.log(propertyId);
@@ -280,6 +284,24 @@ const getAllProperty=async (req,res,next)=>{
                 phone,
                 room,
              })
+             if(guestInfo){
+             const option={
+                     "period": "monthly",
+                     "interval": 1,
+                     "item": {
+                       "name": "Premium Membership",
+                       "amount": amount*100, // in paise
+                       "currency": "INR"
+                     }
+                       }
+                           try{
+                           const plan=await razorpay.plans.create(option)
+                           console.log(plan);
+                           guestInfo.subscription.planId=plan.id
+                           
+                           }catch(err){
+                            console.log(err);
+                           }
 
              const hash = crypto.createHash('sha256');
              hash.update(email);
@@ -296,13 +318,19 @@ const getAllProperty=async (req,res,next)=>{
              console.log(propertyInfo);
              propertyInfo.rooms[roomType].push(roomSchema)
              console.log(propertyInfo.rooms[roomType]); 
+             
              await propertyInfo.save()
+             
              
              return res.status(200).json({
                 sucess:true,
                 message:"Guest add to database sucessfully",
                 data:guestInfo
              })
+            }else{
+                console.log("ERROR adding guest",err);
+            return next(new AppError("ERROR adding guest",500))
+            }
         }
         catch(err){
             console.log("ERROR adding guest",err);
