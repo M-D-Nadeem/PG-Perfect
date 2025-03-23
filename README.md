@@ -98,8 +98,7 @@ Prerequisites
 Clone the Repository
 
 ```bash
-git clone https://github.com/M-D-Nadeem/LMS_Project.git
-cd LMS_Project
+git clone https://github.com/M-D-Nadeem/PG-Perfect.git
 ```
 
 Install Dependencies
