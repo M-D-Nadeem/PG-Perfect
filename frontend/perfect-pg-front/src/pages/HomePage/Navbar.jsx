@@ -11,11 +11,11 @@ const Navbar = () => {
             </div>
 
             <div className="searchBar flex">
-  <a href={`${import.meta.env.VITE_FRONTEND_URL}/`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Home</a>
-  <a href={`${import.meta.env.VITE_FRONTEND_URL}/aboutuspage`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">About</a>
-  <a href={`${import.meta.env.VITE_FRONTEND_URL}/findpg`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Find My PG</a>
-  <a href={`${import.meta.env.VITE_FRONTEND_URL}/signup`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">For PG Owners</a>
-  <a href={`${import.meta.env.VITE_FRONTEND_URL}/contactus`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Contact Us</a>
+  <Link to="/" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Home</Link>
+  <Link to="/aboutuspage" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">About</Link>
+  <Link to="/findpg" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Find My PG</Link>
+  <Link to="/signup" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">For PG Owners</Link>
+  <Link to="/contactus" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Contact Us</Link>
 </div>
 
 

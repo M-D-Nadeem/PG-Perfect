@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+    const navigate = useNavigate();
+
   const footerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -49,30 +52,30 @@ const Footer = () => {
           >
             <h2 className="text-xl font-bold mb-4">Quick Links</h2>
             <ul>
-              <li>
-                <a
-                  href={`${import.meta.env.VITE_FRONTEND_URL}/`}
-                  className="text-blue-400 hover:text-blue-600"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`${import.meta.env.VITE_FRONTEND_URL}/aboutuspage`}
-                  className="text-blue-400 hover:text-blue-600"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`${import.meta.env.VITE_FRONTEND_URL}/contactus`}
-                  className="text-blue-400 hover:text-blue-600"
-                >
-                  Contact
-                </a>
-              </li>
+<li>
+        <span
+          onClick={() => navigate("/")}
+          className="text-blue-400 hover:text-blue-600 cursor-pointer"
+        >
+          Home
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={() => navigate("/aboutuspage")}
+          className="text-blue-400 hover:text-blue-600 cursor-pointer"
+        >
+          About
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={() => navigate("/contactus")}
+          className="text-blue-400 hover:text-blue-600 cursor-pointer"
+        >
+          Contact
+        </span>
+      </li>
             </ul>
           </motion.div>
           <motion.div
