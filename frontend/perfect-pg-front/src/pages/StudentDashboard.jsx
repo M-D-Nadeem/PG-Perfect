@@ -39,12 +39,12 @@ const StudentDashboard=()=>{
         }
         else{
           console.log(userData._id);
-          const sendData={userId:userData._id}
+          const sendData={userId:userData._id,amount}
           const responseSub=await dispatch(createSubscription(sendData))
           console.log(responseSub);
           if(responseSub?.payload?.sucess){
           const options = {
-            key: 'rzp_test_GaN21rSsG7HU8N',
+            key: 'rzp_test_DvkBYdOe0GeLjp',
             amount: amount * 100,
             currency: 'INR',
             name: 'Payment System',
@@ -96,15 +96,17 @@ const StudentDashboard=()=>{
         console.log(response);
         if(response?.payload?.sucess){
         const options = {
-          key: 'rzp_test_uNroaW9UQ2EFbd',
+          key: 'rzp_test_DvkBYdOe0GeLjp',
           amount: amount * 100,
           currency: 'INR',
           name: 'Payment System',
           description: 'Test Transaction',
           order_id: response?.payload?.data,
           handler: async (response) => {
-            alert('Payment successful');
-          },
+             
+              alert('Deposit payment Successfully!');
+              
+            },
           prefill: {
             name:userData.name,
             email:userData.email

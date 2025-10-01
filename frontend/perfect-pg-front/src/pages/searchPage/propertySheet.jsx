@@ -98,4 +98,5 @@ const PropertyCard = ({info}) => {
   )
 };
 
+
 export default PropertyCard;

@@ -66,8 +66,8 @@ function TenantForm() {
             
             // if(responsePlan?.payload?.sucess){
                 console.log(userId);
-                // const responseMessage=await dispatch(sendLoginIdToGuest(userId))
-                // console.log(responseMessage?.payload);
+                const responseMessage=await dispatch(sendLoginIdToGuest(userId))
+                console.log(responseMessage?.payload);
                 // if(responseMessage?.payload?.sucess){
                 setUserData({
                     name:"",

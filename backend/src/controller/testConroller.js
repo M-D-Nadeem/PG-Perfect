@@ -5,8 +5,8 @@ import Razorpay from 'razorpay';
 import property from '../model/propertySchema.js';
 
 const razorpay = new Razorpay({
-    key_id: 'rzp_test_GaN21rSsG7HU8N',
-    key_secret: 'CgkQ4w1ubuXLEDk7qtV5dWiT',
+    key_id: 'rzp_test_DvkBYdOe0GeLjp',
+    key_secret: 'bR5Jljd84jv6mEBaFlAJYsUc',
 });
 
 const createPlan=async (req,res,next)=>{
@@ -17,7 +17,7 @@ const createPlan=async (req,res,next)=>{
         "period": "monthly",
         "interval": 1,
         "item": {
-          "name": "Premium Membership",
+          "name": "Rent",
           "amount": amount*100, // in paise
           "currency": "INR"
         }
@@ -27,6 +27,7 @@ const createPlan=async (req,res,next)=>{
               const plan=await razorpay.plans.create(option)
               console.log(plan);
               userInfo.subscription.planId=plan.id
+              await userInfo.save()
               return res.status(200).json({ 
                 sucess:true,
                 message:"Plan created sucessfully",
@@ -38,13 +39,31 @@ const createPlan=async (req,res,next)=>{
     
 }
 const createSubscription=async (req,res,next)=>{
-    const {userId}=req.body
-    console.log("Subscription");
+    const {userId,amount}=req.body
     
     const userInfo=await guest.findById(userId)
+     console.log("Subscription",amount);
+    let plan;
+    const planOption={
+        "period": "monthly",
+        "interval": 1,
+        "item": {
+          "name": "Rent",
+          "amount": amount*100, // in paise
+          "currency": "INR"
+        }
+          }
+              try{
+               plan=await razorpay.plans.create(planOption)
+              
+              }catch(err){
+               console.log(err);
+              }
+    
+
 
     const option={
-        "plan_id": userInfo.subscription.planId, // Replace with the plan ID from the Plan API
+        "plan_id": plan.id, // Replace with the plan ID from the Plan API
         "total_count": 12,
         "customer_notify": 1,
       
@@ -66,7 +85,7 @@ const validateSubscription=async (req,res,next)=>{
     const {razorpay_payment_id, razorpay_subscription_id, razorpay_signature}=req.body    
     try{
         const generatedSignature = crypto
-            .createHmac('sha256', "CgkQ4w1ubuXLEDk7qtV5dWiT")
+            .createHmac('sha256', "bR5Jljd84jv6mEBaFlAJYsUc")
             .update(razorpay_payment_id + "|" + razorpay_subscription_id)
             .digest('hex');            
             if(generatedSignature==razorpay_signature){
