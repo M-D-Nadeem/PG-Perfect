@@ -22,108 +22,33 @@ import StudentDashboard from './pages/StudentDashboard.jsx'
 import AddFeedback from './pages/AddFeedback.jsx'
 import FindMyPG from './pages/searchPage/findMyPg.jsx'
 
-const appRouter=createBrowserRouter([
+const appRouter = createBrowserRouter([
+  { path: "/", element: <HomePage /> },
+  { path: "/aboutuspage", element: <About /> },
+  { path: "/contactus", element: <ContactUs /> },
+  { path: "/findpg", element: <FindMyPG /> },
+  { path: "/signup", element: <SignupPage /> },
+  { path: "/userlogin", element: <UserLogInpage /> },
+  { path: "/login", element: <LogInpage /> },
   {
-    path:"/",
-    element:
-    <HomePage />
-   },
-   {
-    path:"/aboutuspage",
-    element:<About />
-   },
-   {
-    path:"/contactus",
-    element:
-    <Provider store={store} >
-    <ContactUs />
-    <Toaster />
-    </Provider>
-   },
-   {
-    path:"/findpg",
-    element:
-    <Provider store={store} >
-    <FindMyPG />
-    <Toaster />
-    </Provider>
-   },
-   {
-    path:"/signup",
-    element:
-    <Provider store={store} >
-    <SignupPage />
-    <Toaster />
-    </Provider>
-   },
-   {
-    path:"/userlogin",
-    element:
-    <Provider store={store} >
-    <UserLogInpage />
-    <Toaster />
-    </Provider>
-   },
-   {
-    path:"/login",
-    element:
-    <Provider store={store} >
-    <LogInpage />
-    <Toaster />
-    </Provider>
-   },
-     {
-      
-      path:"/",
-      element:
-      <Provider store={store} >
-      <>
-      <App />
-      <Toaster />
-      </>
-      </Provider>,
-      children:[
-        
-     {
-      path:"/adduser",
-      element:<TenantForm />
-     },
-     {
-      path:"/addbuilding",
-      element:<AddBuilding />
-     },
-     {
-      path:"/listbuilding",
-      element:<ListBuilding />
-     },
-     {
-      path:"/showbuilding",
-      element:<ShowBuilding />
-     },
-     
-     {
-      path:"/updateuserlogin",
-      element:<UpdateUserLogin />
-     },
-     
-     {
-      path:"/admindashboard",
-      element:<AdminDashboard />
-     },
-     
-    
-     {
-      path:"/studentdashboard",
-      element:<StudentDashboard />
-     },
-     {
-      path:"/addfeedback",
-      element:<AddFeedback />
-     },
-    
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/adduser", element: <TenantForm /> },
+      { path: "/addbuilding", element: <AddBuilding /> },
+      { path: "/listbuilding", element: <ListBuilding /> },
+      { path: "/showbuilding", element: <ShowBuilding /> },
+      { path: "/updateuserlogin", element: <UpdateUserLogin /> },
+      { path: "/admindashboard", element: <AdminDashboard /> },
+      { path: "/studentdashboard", element: <StudentDashboard /> },
+      { path: "/addfeedback", element: <AddFeedback /> },
     ]
-     }
-])
+  }
+]);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={appRouter} />
+  <Provider store={store}>
+    <Toaster />
+    <RouterProvider router={appRouter} />
+  </Provider>
 )
