@@ -22,14 +22,14 @@ const Nav=()=>{
         const response=await dispatch(logoutAccount())
         console.log(response?.payload);
         if(response?.payload?.sucess){
-            navigate("/homepage")
+            navigate("/")
         }
        }
        else if(role2!=undefined && role2=="user"){
         const response=await dispatch(logoutAccountUser())
         console.log(response);
         if(response?.payload?.sucess){
-            navigate("/homepage")
+            navigate("/")
         }
        }
       setIsOpen(false);

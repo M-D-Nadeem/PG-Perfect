@@ -59,7 +59,7 @@ const ContactUs=()=>{
                 Email Address
               </a>
               <h4 className="font-light tracking-tight underline decoration-1">
-              mandanmishra11@gmail.com
+              nadeem974852@gmail.com
               </h4>
             </div>
           </div>
@@ -75,7 +75,7 @@ const ContactUs=()=>{
                 Phone Number
               </a>
               <h4 className="font-light tracking-tight underline decoration-1">
-              6388722015
+              +91 7044462019
               </h4>
             </div>
           </div>

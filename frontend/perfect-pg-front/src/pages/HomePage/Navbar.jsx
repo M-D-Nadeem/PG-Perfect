@@ -11,12 +11,13 @@ const Navbar = () => {
             </div>
 
             <div className="searchBar flex">
-        <a href="http://localhost:5174/homepage" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Home</a>
-        <a href="http://localhost:5174/aboutuspage" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">About</a>
-        <a href="http://localhost:5174/findpg" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Find My PG</a>
-        <a href="http://localhost:5174/signup" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">For PG Owners</a>
-        <a href="http://localhost:5174/contactus" className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Contact Us</a>
-      </div>
+  <a href={`${import.meta.env.VITE_FRONTEND_URL}/`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Home</a>
+  <a href={`${import.meta.env.VITE_FRONTEND_URL}/aboutuspage`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">About</a>
+  <a href={`${import.meta.env.VITE_FRONTEND_URL}/findpg`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Find My PG</a>
+  <a href={`${import.meta.env.VITE_FRONTEND_URL}/signup`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">For PG Owners</a>
+  <a href={`${import.meta.env.VITE_FRONTEND_URL}/contactus`} className="mx-5 font-semibold text-gray-500 hover:text-blue-500">Contact Us</a>
+</div>
+
 
             <div className="buttons mr-5">
                <Link to="/userlogin"><button  className='bg-blue-600 p-2 rounded-md mx-2 text-white hover:cursor-pointer hover:scale-105  hover:text-blue-600 hover:bg-white hover:outline outline-1 outline-blue-500 '>Sign in as Guest</button></Link> 

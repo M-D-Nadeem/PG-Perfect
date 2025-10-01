@@ -24,7 +24,7 @@ import FindMyPG from './pages/searchPage/findMyPg.jsx'
 
 const appRouter=createBrowserRouter([
   {
-    path:"/homepage",
+    path:"/",
     element:
     <HomePage />
    },
